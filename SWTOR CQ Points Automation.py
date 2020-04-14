@@ -371,3 +371,6 @@ def gather_cq_points():
         err.show()
     print('\nDownload complete. Press any key to close')
     input()
+
+if __name__ == '__main__':
+    gather_cq_points()

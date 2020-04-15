@@ -156,6 +156,14 @@ def pic_to_text(image_list, path):
     return output, total_error, name_error
 
 
+def format_text(string):
+    # Removes text reading errors
+    string = string.replace('‘','')
+    string = string.replace(':','')
+    string = string.replace('’',"'")
+    return string
+
+
 def parse_roster(text):
     # Analyses and formats the text to ensure readability
     error = []
@@ -165,17 +173,9 @@ def parse_roster(text):
     cq = []
     for char in text:
         ## Remove invalid punctuation
-        char[0] = char[0].replace('‘','')
-        char[0] = char[0].replace(':','')
-        char[0] = char[0].replace('’',"'")
-        
-        char[1] = char[1].replace('‘','')
-        char[1] = char[1].replace(':','')
-        char[1] = char[1].replace('’',"'")
-        
-        char[2] = char[2].replace('‘','')
-        char[2] = char[2].replace(':','')
-        char[2] = char[2].replace('’',"'")
+        char[0] = format_text(char[0])
+        char[1] = format_text(char[1])
+        char[2] = format_text(char[2])
         
         ## Check for proper number recognition
         if char[3] in ['o', 'O', '']:
